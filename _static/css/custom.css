@@ -1,0 +1,15 @@
+.wy-nav-side {
+    display: none;
+}
+
+.rst-versions {
+    display: none;
+}
+
+.wy-nav-content {
+    max-width: max-content;
+}
+
+.wy-nav-content-wrap {
+    margin-left: unset;
+}
