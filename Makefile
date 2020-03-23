@@ -13,7 +13,7 @@ PLISTPATH     = $(DOCSETDIR)/Contents/Info.plist
 
 XMLTEXT		  = "<entry>" \
 	"<version>`cd $(SPHINXPROJ) && git describe --tags`</version>" \
-	"<url>https://github.com/flandolfi/pyg-docset/raw/master/$(SPHINXPROJ).tgz</url>" \
+	"<url>https://github.com/flandolfi/pyg-docset/raw/master/$(DISPLAYNAME).tgz</url>" \
 "</entry>"
 
 .PHONY: icon docset clean all update
@@ -29,8 +29,8 @@ clean-docset:
 
 clean:
 	-rm -R $(BUILDDIR)
-	-rm $(SPHINXPROJ).xml 
-	-rm $(SPHINXPROJ).tgz
+	-rm $(DISPLAYNAME).xml 
+	-rm $(DISPLAYNAME).tgz
 
 icon ${ICONNAME}:
 	mkdir -p $(BUILDDIR)
@@ -40,5 +40,5 @@ docset: ${ICONNAME} clean-docset
 	@$(SPHINXBUILD) -D html_static_path="../../../_static", "$(SOURCEDIR)" "$(BUILDDIR)"
 	@$(DASHBUILD) -n $(DISPLAYNAME) -i $(ICONNAME) $(BUILDDIR) 
 	@sed -i -e '/<key>DocSetPlatformFamily<\/key>/!b;n;c\\t<string>pyg<\/string>' $(PLISTPATH)
-	@tar --exclude='.DS_Store' -cvzf $(SPHINXPROJ).tgz $(DOCSETDIR)
-	@echo $(XMLTEXT) > $(SPHINXPROJ).xml
+	@tar --exclude='.DS_Store' -cvzf $(DISPLAYNAME).tgz $(DOCSETDIR)
+	@echo $(XMLTEXT) > $(DISPLAYNAME).xml
