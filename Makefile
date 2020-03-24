@@ -13,7 +13,7 @@ PLISTPATH     = $(DOCSETDIR)/Contents/Info.plist
 
 VERSIONCMD    = cd $(SPHINXPROJ) && git describe --tags
 VERSION       := $(shell $(VERSIONCMD))
-BASEURL       = "https://github.com/flandolfi/pyg-docset/release/download/$(VERSION)/"
+BASEURL       = "https://github.com/flandolfi/pyg-docset/releases/download/$(VERSION)/"
 ENCODEDURL    := $(shell echo $(BASEURL) | sed 's/\//%2F/g; s/:/%3A/g')
 
 XMLTEXT		  = "<entry>" \
@@ -30,19 +30,15 @@ READMETXT     = "\# PyTorch Geometric Docset \#\n\n"\
 .PHONY: docset update clean all readme xml tgz
 
 
-all: update docset tgz xml
+all: update docset tgz xml readme
 
 update:
 	@git submodule foreach git pull
 	@VERSION=`$(VERSIONCMD)`
 
-clean-docset:
-	-rm -R $(DOCSETDIR) 
-
 clean:
+	-rm -R $(DOCSETDIR) 
 	-rm -R $(BUILDDIR)
-	-rm $(DISPLAYNAME).xml 
-	-rm $(DISPLAYNAME).tgz
 
 readme $(README):
 	@echo $(READMETXT) > $(README)
