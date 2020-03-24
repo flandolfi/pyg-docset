@@ -13,7 +13,7 @@ PLISTPATH     = $(DOCSETDIR)/Contents/Info.plist
 
 VERSIONCMD    = cd $(SPHINXPROJ) && git describe --tags
 VERSION       := $(shell $(VERSIONCMD))
-BASEURL       = "https://github.com/flandolfi/pyg-docset/releases/download/$(VERSION)/"
+BASEURL       = "https://github.com/flandolfi/pyg-docset/releases/latest/download/"
 ENCODEDURL    := $(shell echo $(BASEURL) | sed 's/\//%2F/g; s/:/%3A/g')
 
 XMLTEXT		  = "<entry>" \
