@@ -24,7 +24,7 @@ XMLTEXT		  = "<entry>" \
 README        = README.md
 READMETXT     = "\# PyTorch Geometric Docset \#\n\n"\
 	"Use one of the following links to add the [PyTorch Geometric](https://pytorch-geometric.readthedocs.io/en/latest/) docset:\n\n"\
-	" - **On Dash:** Just go to [\`dash-feed://\`](dash-feed://$(ENCODEDURL)$(DISPLAYNAME).xml)\n"\
+	" - **On Dash:** Just go to [\`dash-feed://$(ENCODEDURL)$(DISPLAYNAME).xml\`](dash-feed://$(ENCODEDURL)$(DISPLAYNAME).xml)\n"\
 	" - **On Zeal:** Copy this link [\`$(BASEURL)$(DISPLAYNAME).xml\`]($(BASEURL)$(DISPLAYNAME).xml) and paste it on *Tools → Docsets... → Add Feed*.\n"
 
 .PHONY: docset update clean all readme xml tgz
