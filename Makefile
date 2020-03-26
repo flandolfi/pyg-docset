@@ -13,7 +13,7 @@ PLISTPATH     = $(DOCSETDIR)/Contents/Info.plist
 
 VERSIONCMD    = cd $(SPHINXPROJ) && git describe --tags
 VERSION       := $(shell $(VERSIONCMD))
-BASEURL       = "https://github.com/flandolfi/pyg-docset/releases/latest/download/"
+BASEURL       = "https://github.com/flandolfi/pyg-docset/raw/master/$(BUILDDIR)/"
 ENCODEDURL    := $(shell echo $(BASEURL) | sed 's/\//%2F/g; s/:/%3A/g')
 
 XMLTEXT		  = "<entry>" \
@@ -21,16 +21,10 @@ XMLTEXT		  = "<entry>" \
 		"<url>$(BASEURL)$(DISPLAYNAME).tgz</url>" \
 	"</entry>"
 
-README        = README.md
-READMETXT     = "\# PyTorch Geometric Docset \#\n\n"\
-	"Use one of the following links to add the [PyTorch Geometric](https://pytorch-geometric.readthedocs.io/en/latest/) docset:\n\n"\
-	" - **On Dash:** Just go to [\`dash-feed://$(ENCODEDURL)$(DISPLAYNAME).xml\`](dash-feed://$(ENCODEDURL)$(DISPLAYNAME).xml)\n"\
-	" - **On Zeal:** Copy this link [\`$(BASEURL)$(DISPLAYNAME).xml\`]($(BASEURL)$(DISPLAYNAME).xml) and paste it on *Tools → Docsets... → Add Feed*.\n"
-
-.PHONY: docset update clean all readme xml tgz
+.PHONY: docset update clean all xml tgz
 
 
-all: update docset tgz xml readme
+all: update docset tgz xml
 
 update:
 	@git submodule foreach git pull
@@ -39,9 +33,6 @@ update:
 clean:
 	-rm -R $(DOCSETDIR) 
 	-rm -R $(BUILDDIR)
-
-readme $(README):
-	@echo $(READMETXT) > $(README)
 
 xml $(DISPLAYNAME).xml:
 	@echo $(XMLTEXT) > $(BUILDDIR)/$(DISPLAYNAME).xml
